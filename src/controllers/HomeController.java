@@ -19,14 +19,17 @@ public class HomeController {
 	}
 	
 	public void viewItemMenuButtonOnAction(ActionEvent event) {
-		
+		UniversalMethods unimet = new UniversalMethods();
+		unimet.switchScene(event, "viewItem.fxml");
 	}
 	
 	public void settingsMenuButtonOnAction(ActionEvent event) {
-		
+		UniversalMethods unimet = new UniversalMethods();
+		unimet.switchScene(event, "settings.fxml");
 	}
 	
 	public void calculationsMenuButtonOnAction(ActionEvent event) {
-		
+		UniversalMethods unimet = new UniversalMethods();
+		unimet.switchScene(event, "calculations.fxml");
 	}
 }

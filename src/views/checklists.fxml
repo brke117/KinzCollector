@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
-</AnchorPane>
-
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ChecklistsController">
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="viewChecklistsButton" layoutX="173.0" layoutY="177.0" mnemonicParsing="false" onAction="#viewChecklistsButtonOnAction" prefHeight="70.0" prefWidth="85.0" text="View" />
+            <Button fx:id="createNewChecklistButton" layoutX="352.0" layoutY="177.0" mnemonicParsing="false" onAction="#createNewChecklistButtonOnAction" prefHeight="70.0" prefWidth="85.0" text="Create New" />
+            <Label alignment="CENTER" layoutX="160.0" layoutY="75.0" prefHeight="17.0" prefWidth="294.0" text="CHECKLISTS">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Button fx:id="backButton" layoutX="22.0" layoutY="24.0" mnemonicParsing="false" onAction="#backButtonOnAction" prefHeight="25.0" prefWidth="66.0" text="BACK" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

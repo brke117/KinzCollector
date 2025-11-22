@@ -1,0 +1,31 @@
+package controllers;
+
+import application.UniversalMethods;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+public class ChecklistsCreateController {
+
+	@FXML Button changeIconButton;
+	@FXML Button cancelButton;
+	@FXML Button createChecklistButton;
+	@FXML TextField checklistNameTextField;
+	@FXML Label newChecklistMessage;
+	
+	public void changeIconButtonOnAction(ActionEvent event) {
+		
+	}
+	
+	public void cancelButtonOnAction(ActionEvent event) {
+		Stage stage = (Stage) cancelButton.getScene().getWindow();
+		stage.close();
+	}
+	
+	public void createChecklistButtonOnAction(ActionEvent event) {
+		
+	}
+}

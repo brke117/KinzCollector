@@ -6,4 +6,6 @@ module KinzCollector {
 	requires javafx.base;
 	
 	opens application;
+	opens controllers;
+	opens views;
 }

@@ -1,4 +1,4 @@
-package application;
+package controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +20,7 @@ public class MainController {
 		Parent root;
 		
 		stage = (Stage) signInButton.getScene().getWindow();
-		root = FXMLLoader.load(getClass().getResource("login.fxml"));
+		root = FXMLLoader.load(getClass().getResource("/views/login.fxml"));
 		
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
@@ -32,7 +32,7 @@ public class MainController {
 		Parent root;
 		
 		stage = (Stage) signUpButton.getScene().getWindow();
-		root = FXMLLoader.load(getClass().getResource("register.fxml"));
+		root = FXMLLoader.load(getClass().getResource("/views/register.fxml"));
 		
 		Scene scene = new Scene(root);
 		stage.setScene(scene);

@@ -10,10 +10,10 @@ public class KinzCollector extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("/views/main.fxml"));
 		primaryStage.setTitle("KinzCollector");
-		Scene scene = new Scene(root,520,400);
-		primaryStage.setScene(scene);
+		Scene main = new Scene(root,520,400);
+		primaryStage.setScene(main);
 		primaryStage.show();
 		//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 	}

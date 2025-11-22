@@ -1,9 +1,10 @@
-package application;
+package controllers;
 
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Statement;
 
+import application.DatabaseConnection;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,7 +29,7 @@ public class RegisterController {
 	
 	public void cancelButtonOnAction(ActionEvent e) throws IOException {
 		Stage stage = (Stage) cancelButton.getScene().getWindow();
-		Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("/views/main.fxml"));
 		
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
@@ -75,7 +76,7 @@ public class RegisterController {
 		try {
 			Stage stage;
 			stage = (Stage) window.getScene().getWindow();
-			Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/views/login.fxml"));
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();

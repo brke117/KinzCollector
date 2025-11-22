@@ -1,10 +1,11 @@
-package application;
+package controllers;
 
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import application.DatabaseConnection;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,16 +26,16 @@ public class LoginController {
 	@FXML private TextField usernameTextField;
 	@FXML private PasswordField passwordPasswordField;
 	
-	public void cancelButtonOnAction(ActionEvent e) throws IOException {
+	public void cancelButtonOnAction(ActionEvent event) throws IOException {
 		Stage stage = (Stage) cancelButton.getScene().getWindow();
-		Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("/views/main.fxml"));
 		
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 	}
 	
-	public void loginButtonOnAction(ActionEvent e) {
+	public void loginButtonOnAction(ActionEvent event) {
 		if(usernameTextField.getText().isBlank() == false && passwordPasswordField.getText().isBlank() == false) {
 			validateLogin();
 		} else {
@@ -54,7 +55,7 @@ public class LoginController {
 			
 			while(queryResult.next()) {
 				if(queryResult.getInt(1) == 1) {
-					//loginMessageLabel.setText("Welcome!");
+					loginMessageLabel.setText("Welcome!");
 					homeMenu(loginMessageLabel.getScene().getWindow());
 				} else {
 					loginMessageLabel.setText("Incorrect username/password. Please try again.");
@@ -69,7 +70,7 @@ public class LoginController {
 		try {
 			Stage stage;
 			stage = (Stage) window.getScene().getWindow();
-			Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/views/home.fxml"));
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();

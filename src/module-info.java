@@ -4,6 +4,7 @@ module KinzCollector {
 	requires javafx.graphics;
 	requires java.sql;
 	requires javafx.base;
+	requires org.controlsfx.controls;
 	
 	opens application;
 	opens controllers;

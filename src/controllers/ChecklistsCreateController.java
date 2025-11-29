@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import objects.Inventory;
+import database.ChecklistSystem;
 
 public class ChecklistsCreateController {
 
@@ -15,6 +17,8 @@ public class ChecklistsCreateController {
 	@FXML Button createChecklistButton;
 	@FXML TextField checklistNameTextField;
 	@FXML Label newChecklistMessage;
+	
+	Inventory inventory = new Inventory();
 	
 	public void changeIconButtonOnAction(ActionEvent event) {
 		
@@ -26,6 +30,10 @@ public class ChecklistsCreateController {
 	}
 	
 	public void createChecklistButtonOnAction(ActionEvent event) {
-		
+		ChecklistSystem checkSys = new ChecklistSystem();
+		//String name = checklistNameTextField.getText();
+		checkSys.createChecklist(checklistNameTextField.getText());
+		//checkSys.getChecklist(checklistNameTextField.getText());
+		//ArrayList<Object> name = new ArrayList<>();
 	}
 }

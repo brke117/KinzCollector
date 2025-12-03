@@ -18,6 +18,7 @@
                </font>
             </Label>
             <Button fx:id="backButton" layoutX="22.0" layoutY="24.0" mnemonicParsing="false" onAction="#backButtonOnAction" prefHeight="25.0" prefWidth="66.0" text="BACK" />
+            <Button fx:id="singleChecklistAdd" ellipsisString="" layoutX="255.0" layoutY="268.0" mnemonicParsing="false" onAction="#singleChecklistAddOnAction" prefHeight="87.0" prefWidth="105.0" text="ADD TO SINGLE CHECKLIST" textAlignment="CENTER" wrapText="true" />
          </children>
       </AnchorPane>
    </center>

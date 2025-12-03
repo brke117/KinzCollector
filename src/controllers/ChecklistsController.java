@@ -17,8 +17,16 @@ public class ChecklistsController {
 	@FXML Button createNewChecklistButton;
 	@FXML Button backButton;
 	
+	@FXML Button singleChecklistAdd;
+	
+	public void singleChecklistAddOnAction(ActionEvent event) {
+		UniversalMethods unimet = new UniversalMethods();
+		unimet.switchScene(event, "singleChecklistAdd.fxml");
+	}
+	
 	public void viewChecklistsButtonOnAction(ActionEvent event) {
-		
+		UniversalMethods unimet = new UniversalMethods();
+		unimet.switchScene(event, "viewSingleChecklist.fxml");
 	}
 	
 	public void createNewChecklistButtonOnAction(ActionEvent event) throws IOException {
@@ -26,7 +34,7 @@ public class ChecklistsController {
 		Parent root;
 		
 		stage = new Stage();
-		root = FXMLLoader.load(getClass().getResource("/views/checklistsCreate.fxml"));
+		root = FXMLLoader.load(getClass().getResource("/views/checklistsCreate.fxml")); // /views/checklistsCreate.fxml
 		stage.setScene(new Scene(root));
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.initOwner(createNewChecklistButton.getScene().getWindow());

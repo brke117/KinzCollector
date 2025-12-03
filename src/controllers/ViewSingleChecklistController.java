@@ -7,23 +7,27 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import objects.Database;
+import javafx.scene.control.SelectionMode;
 
-public class ViewItemController {
+public class ViewSingleChecklistController {
 
 	@FXML private Button backButton;
-	@FXML private ListView<String> viewItemListView;
-	private ObservableList<String> items = FXCollections.observableArrayList();
-	Database db = new Database();
+	@FXML private ListView<String> checklistListView;
+	ObservableList<String> selectedItems = FXCollections.observableArrayList(); 
 	
 	public void backButtonOnAction(ActionEvent event) {
 		UniversalMethods unimet = new UniversalMethods();
-		unimet.switchScene(event, "home.fxml");
+		unimet.switchScene(event, "checklists.fxml");
+	}
+	
+	public void setChecklistItems(ObservableList<String> items) {
+		checklistListView.setItems(items);
 	}
 	
 	@FXML
 	public void initialize() {
-		viewItemListView.setItems(items);
-		db.getFullItemList(items);
+		//
 	}
+	
+	
 }

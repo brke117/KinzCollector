@@ -13,11 +13,7 @@ public class Database {
 	Connection connectDB = connect.getConnection();
 	
 	public void getFullItemList(ObservableList<String> items) {
-		//DatabaseConnection connect = new DatabaseConnection();
-		//Connection connectDB = connect.getConnection();
-		
 		String getAll = "SELECT name FROM clothing UNION SELECT name FROM food UNION SELECT name FROM item ORDER BY name";
-		
 		try {
 			Statement statement = connectDB.createStatement();
 			ResultSet itemResult = statement.executeQuery(getAll);
@@ -40,5 +36,29 @@ public class Database {
 			e.printStackTrace();
 		}
 		return resultFood;
+	}
+
+	public ResultSet getItem() {
+		String getItem = "SELECT * FROM item";
+		ResultSet resultItem = null;
+		try {
+			Statement statement = connectDB.createStatement();
+			resultItem = statement.executeQuery(getItem);
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return resultItem;
+	}
+	
+	public ResultSet getClothing() {
+		String getClothing = "SELECT * FROM clothing";
+		ResultSet resultClothing = null;
+		try {
+			Statement statement = connectDB.createStatement();
+			resultClothing = statement.executeQuery(getClothing);
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return resultClothing;
 	}
 }

@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 public class UniversalMethods {
 	
-	public void switchScene(ActionEvent event, String fxml) {
+	 public void switchScene(ActionEvent event, String fxml) {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("/views/" + fxml));
 			Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();

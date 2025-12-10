@@ -5,6 +5,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class Inventory {
 
 	private ArrayList<Clothing> clothing = new ArrayList<>();
@@ -13,12 +16,13 @@ public class Inventory {
 	private Database db = new Database();
 	
 	public Inventory() {
-		getClothing();
-		getFood();
-		getItem();
+		getClothing("");
+		//getFood();
+		//getItem();
 	}
 
-	private void getFood() {
+	/*
+	public void getFood() {
 		ResultSet foodRS = db.getFood();
 		try {
 			while(foodRS.next()) {
@@ -29,7 +33,7 @@ public class Inventory {
 		}
 	}
 
-	private void getItem() {
+	public void getItem() {
 		ResultSet itemRS = db.getItem();
 		try {
 			while(itemRS.next()) {
@@ -39,9 +43,11 @@ public class Inventory {
 			e.printStackTrace();
 		}
 	}
+	*/
 
-	private void getClothing() {
-		ResultSet clothingRS = db.getClothing();
+	//THESE ARE FOR SINGLECHECKLISTADDCONTROLLER... CAN'T GO INTO CONSTRUCTOR UNLESS I MAKE A VARIABLE???
+	public void getClothing(String name) {
+		ResultSet clothingRS = db.getClothing(name);
 		try {
 			while(clothingRS.next()) {
 				clothing.add(new Clothing(clothingRS.getInt("clothing_id"), clothingRS.getInt("asset_id"), clothingRS.getString("name"), clothingRS.getInt("price"), clothingRS.getString("type_prim"), clothingRS.getString("theme"), clothingRS.getString("location"), clothingRS.getBoolean("deluxe"), false));
@@ -49,5 +55,38 @@ public class Inventory {
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
-	}	
+	}
+	
+	public void getClothingByClothingID(int clothing_id) {
+		ResultSet resultClothing = db.getClothingByClothingID(clothing_id);
+		try {
+			while(resultClothing.next()) {
+				clothing.add(new Clothing(resultClothing.getInt("clothing_id"), resultClothing.getInt("asset_id"), resultClothing.getString("name"), resultClothing.getInt("price"), resultClothing.getString("type_prim"), resultClothing.getString("theme"), resultClothing.getString("location"), resultClothing.getBoolean("deluxe"), false));
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public ObservableList<String> sendToList() {
+		ObservableList<String> list = FXCollections.observableArrayList();
+		for(int i=0; i<clothing.size(); i++) {
+			list.add(clothing.get(i).getName());		//grabs the "String name" element from the clothing object at index i.
+		}
+		//for(int i=0; i<food.size(); i++) {
+			//
+		//}
+		//for(int i=0; i<item.size(); i++) {
+			//
+		//}
+		return list;
+	}
+	
+	// /*
+	@Override
+	public String toString() {
+		String str = "CLOTHING ITEMS: \n" + clothing.toString();
+		return str;
+	}
+	// */
 }

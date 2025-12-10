@@ -95,4 +95,12 @@ public class Clothing {
 	public void setOwned(boolean owned) {
 		this.owned = owned;
 	}
+	
+	/*
+	@Override
+	public String toString() {
+		String str = name;
+		return str;
+	}
+	*/
 }

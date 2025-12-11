@@ -17,13 +17,13 @@ public class Inventory {
 	
 	public Inventory() {
 		getClothing("");
-		//getFood();
+		getFood("");
 		//getItem();
 	}
 
-	/*
-	public void getFood() {
-		ResultSet foodRS = db.getFood();
+	
+	public void getFood(String name) {
+		ResultSet foodRS = db.getFood(name);
 		try {
 			while(foodRS.next()) {
 				food.add(new Food(foodRS.getInt("food_id"), foodRS.getInt("asset_id"), foodRS.getString("name"), foodRS.getInt("price"), foodRS.getString("type_prim"), foodRS.getString("location"), foodRS.getInt("hunger_boost"), false));
@@ -32,7 +32,19 @@ public class Inventory {
 			e.printStackTrace();
 		}
 	}
-
+	
+	public void getFoodByFoodID(int food_id) {
+		ResultSet foodRS = db.getFoodByFoodID(food_id);
+		try {
+			while(foodRS.next()) {
+				food.add(new Food(foodRS.getInt("food_id"), foodRS.getInt("asset_id"), foodRS.getString("name"), foodRS.getInt("price"), foodRS.getString("type_prim"), foodRS.getString("location"), foodRS.getInt("hunger_boost"), false));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/*
 	public void getItem() {
 		ResultSet itemRS = db.getItem();
 		try {

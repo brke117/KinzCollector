@@ -52,13 +52,24 @@ public class Database {
 		return resultClothing;
 	}
 	
-	//REQUIRES EDITING
-	public ResultSet getFood() {
-		String getFood = "SELECT * FROM food";
+	public ResultSet getFood(String name) {
+		String getFood = "SELECT * FROM food WHERE name = '" + name + "'";
 		ResultSet resultFood = null;
 		try {
 			Statement statement = connectDB.createStatement();
 			resultFood = statement.executeQuery(getFood);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return resultFood;
+	}
+	
+	public ResultSet getFoodByFoodID(int food_id) {
+		String getFoodByID = "SELECT * FROM food WHERE food_id = '" + food_id;
+		ResultSet resultFood = null;
+		try {
+			Statement statement = connectDB.createStatement();
+			resultFood = statement.executeQuery(getFoodByID);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -133,8 +144,20 @@ public class Database {
 		}
 	}
 	
-	public void addAccountHasFood() {
+	public void addAccountHasFood(int id, String name) {
+		ResultSet resultFoodID = null;
+		String foodID = "";
 		
+		try {
+			Statement statement = connectDB.createStatement();
+			resultFoodID = statement.executeQuery("SELECT food_id FROM food WHERE name = '" + name + "'");
+			while(resultFoodID.next()) {
+				foodID = resultFoodID.getString(1);
+			}
+			statement.executeUpdate("INSERT INTO account_has_food(account_user_id, food_food_id) VALUES('" + id + "', '" + foodID + "')");
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void addAccountHasItem() {

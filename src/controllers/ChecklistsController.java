@@ -31,9 +31,6 @@ public class ChecklistsController {
 	private Account account;
 	
 	public void singleChecklistAddOnAction(ActionEvent event) {
-		//UniversalMethods unimet = new UniversalMethods();
-		//unimet.switchScene(event, "singleChecklistAdd.fxml");
-		
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/singleChecklistAdd.fxml"));
 			Parent root = loader.load();
@@ -50,12 +47,7 @@ public class ChecklistsController {
 	}
 	
 	public void viewChecklistsButtonOnAction(ActionEvent event) {
-		//UniversalMethods unimet = new UniversalMethods();
-		//unimet.switchScene(event, "viewSingleChecklist.fxml");
-		
 		try {
-			//Inventory inventory = new Inventory();
-			
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/viewSingleChecklist.fxml"));
 			Parent root = loader.load();
 			
@@ -64,15 +56,6 @@ public class ChecklistsController {
 			
 			Inventory inventory = setChecklistClothing(account.getUserID());
 			controller.setMyInventory(inventory);
-			
-			
-			//controller.setChecklist(account.getUserID());
-			//controller.setMyInventory(inventory);
-			controller.getChecklist();
-			
-			
-			//Database db = new Database();
-			//db.setChecklistClothing(account.getUserID());
 			
 			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		    stage.setScene(new Scene(root));
@@ -101,6 +84,32 @@ public class ChecklistsController {
 				inventory.getClothingByClothingID(clothingID.get(i));
 			}
 			//System.out.println(clothingID.toString());
+			//System.out.println(inventory.toString());
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return inventory;
+	}
+	
+	public Inventory setChecklistFood(int id) {
+		DatabaseConnection connect = new DatabaseConnection();
+		Connection connectDB = connect.getConnection();
+		
+		Inventory inventory = new Inventory();
+		ResultSet resultAccHasFood = null;
+		ArrayList<Integer> foodID = new ArrayList<>();
+		try {
+			Statement statement = connectDB.createStatement();
+			resultAccHasFood = statement.executeQuery("SELECT food_food_id FROM account_has_food WHERE account_user_id = " + id);
+			
+			while(resultAccHasFood.next()) {
+				foodID.add(resultAccHasFood.getInt(1));
+			}
+			
+			for(int i=0; i<foodID.size(); i++) {
+				inventory.getClothingByClothingID(foodID.get(i));
+			}
+			//System.out.println(foodID.toString());
 			//System.out.println(inventory.toString());
 		} catch(SQLException e) {
 			e.printStackTrace();

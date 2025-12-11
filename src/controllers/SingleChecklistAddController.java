@@ -53,9 +53,11 @@ public class SingleChecklistAddController {
 				inventory.getClothing(selectedItems.get(i));
 				db.addAccountHasClothing(account.getUserID(), selectedItems.get(i));
 			} else if(db.determineCategory(selectedItems.get(i)) == 2) {
-				//inventory.getFood(selectedItems.get(i);
+				inventory.getFood(selectedItems.get(i));
+				db.addAccountHasFood(account.getUserID(), selectedItems.get(i));
 			} else if(db.determineCategory(selectedItems.get(i)) == 3){
-				//inventory.getItem(selectedItems.get(i);
+				//inventory.getItem(selectedItems.get(i));
+				//db.addAccountHasItem(account.getUserID(), selectedItems.get(i));
 			} else {
 				System.out.println("This SHOULD NOT BE HAPPENING!");
 			}

@@ -65,7 +65,7 @@ public class Database {
 	}
 	
 	public ResultSet getFoodByFoodID(int food_id) {
-		String getFoodByID = "SELECT * FROM food WHERE food_id = '" + food_id;
+		String getFoodByID = "SELECT * FROM food WHERE food_id = " + food_id;
 		ResultSet resultFood = null;
 		try {
 			Statement statement = connectDB.createStatement();
@@ -76,14 +76,25 @@ public class Database {
 		return resultFood;
 	}
 
-	//REQUIRES EDITING
-	public ResultSet getItem() {
-		String getItem = "SELECT * FROM item";
+	public ResultSet getItem(String name) {
+		String getItem = "SELECT * FROM item WHERE name = '" + name + "'";
 		ResultSet resultItem = null;
 		try {
 			Statement statement = connectDB.createStatement();
 			resultItem = statement.executeQuery(getItem);
 		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return resultItem;
+	}
+	
+	public ResultSet getItemByItemID(int item_id) {
+		String getItemByID = "SELECT * FROM item WHERE item_id = " + item_id;
+		ResultSet resultItem = null;
+		try {
+			Statement statement = connectDB.createStatement();
+			resultItem = statement.executeQuery(getItemByID);
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return resultItem;
@@ -102,8 +113,10 @@ public class Database {
 					category = 1;
 				} else if(resultCategory.getString(1).equals("Ingredient") || resultCategory.getString(1).equals("Recipe Food")) {
 					category = 2;
-				} else {
+				} else if(resultCategory.getString(1).equals("TYPE")) {
 					category = 3;
+				} else {
+					System.out.println("This should NOT be happening...");
 				}
 			}
 		} catch(SQLException e) {
@@ -160,32 +173,19 @@ public class Database {
 		}
 	}
 	
-	public void addAccountHasItem() {
+	public void addAccountHasItem(int id, String name) {
+		ResultSet resultItemID = null;
+		String itemID = "";
 		
-	}
-	
-	/*
-	public Inventory setChecklistClothing(int id) {
-		Inventory inventory = new Inventory();
-		ResultSet resultAccHasClothing = null;
-		ArrayList<Integer> clothingID = new ArrayList<>();
 		try {
 			Statement statement = connectDB.createStatement();
-			resultAccHasClothing = statement.executeQuery("SELECT clothing_clothing_id FROM account_has_clothing WHERE account_user_id = " + id);
-			
-			while(resultAccHasClothing.next()) {
-				clothingID.add(resultAccHasClothing.getInt(1));
+			resultItemID = statement.executeQuery("SELECT item_id FROM item WHERE name = '" + name + "'");
+			while(resultItemID.next()) {
+				itemID = resultItemID.getString(1);
 			}
-			
-			for(int i=0; i<clothingID.size(); i++) {
-				inventory.getClothingByClothingID(clothingID.get(i));
-			}
-			System.out.println(clothingID.toString());
-			System.out.println(inventory.toString());
+			statement.executeUpdate("INSERT INTO account_has_item(account_user_id, item_item_id) VALUES('" + id + "', '" + itemID + "')");
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
-		return inventory;
 	}
-	*/
 }

@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import application.UniversalMethods;
+import database.ChecklistSystem;
 import database.DatabaseConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,11 +33,14 @@ public class ChecklistsController {
 	
 	public void singleChecklistAddOnAction(ActionEvent event) {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/singleChecklistAdd.fxml"));
-			Parent root = loader.load();
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/SingleChecklistAdd.fxml"));
 			
-			SingleChecklistAddController controller = loader.getController();
+			//SingleChecklistAddController controller = loader.getController();
+			SingleChecklistAddController controller = new SingleChecklistAddController();
 			controller.setCurrentAccount(account);
+			loader.setController(controller);
+			
+			Parent root = loader.load();
 			
 			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		    stage.setScene(new Scene(root));
@@ -47,74 +51,18 @@ public class ChecklistsController {
 	}
 	
 	public void viewChecklistsButtonOnAction(ActionEvent event) {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/viewSingleChecklist.fxml"));
-			Parent root = loader.load();
-			
-			ViewSingleChecklistController controller = loader.getController();
-			controller.setCurrentAccount(account);
-			
-			Inventory inventory = setChecklistClothing(account.getUserID());
-			controller.setMyInventory(inventory);
-			
-			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		    stage.setScene(new Scene(root));
-		    stage.show();
-		} catch(IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public Inventory setChecklistClothing(int id) {
-		DatabaseConnection connect = new DatabaseConnection();
-		Connection connectDB = connect.getConnection();
+		UniversalMethods unimet = new UniversalMethods();
+		ViewSingleChecklistController controller = new ViewSingleChecklistController();
+
+		controller.setCurrentAccount(account);
+		unimet.switcherooScene(backButton.getScene().getWindow(), "/views/ViewSingleChecklist.fxml", controller);
 		
 		Inventory inventory = new Inventory();
-		ResultSet resultAccHasClothing = null;
-		ArrayList<Integer> clothingID = new ArrayList<>();
-		try {
-			Statement statement = connectDB.createStatement();
-			resultAccHasClothing = statement.executeQuery("SELECT clothing_clothing_id FROM account_has_clothing WHERE account_user_id = " + id);
-			
-			while(resultAccHasClothing.next()) {
-				clothingID.add(resultAccHasClothing.getInt(1));
-			}
-			
-			for(int i=0; i<clothingID.size(); i++) {
-				inventory.getClothingByClothingID(clothingID.get(i));
-			}
-			//System.out.println(clothingID.toString());
-			//System.out.println(inventory.toString());
-		} catch(SQLException e) {
-			e.printStackTrace();
-		}
-		return inventory;
-	}
-	
-	public Inventory setChecklistFood(int id) {
-		DatabaseConnection connect = new DatabaseConnection();
-		Connection connectDB = connect.getConnection();
-		
-		Inventory inventory = new Inventory();
-		ResultSet resultAccHasFood = null;
-		ArrayList<Integer> foodID = new ArrayList<>();
-		try {
-			Statement statement = connectDB.createStatement();
-			resultAccHasFood = statement.executeQuery("SELECT food_food_id FROM account_has_food WHERE account_user_id = " + id);
-			
-			while(resultAccHasFood.next()) {
-				foodID.add(resultAccHasFood.getInt(1));
-			}
-			
-			for(int i=0; i<foodID.size(); i++) {
-				inventory.getClothingByClothingID(foodID.get(i));
-			}
-			//System.out.println(foodID.toString());
-			//System.out.println(inventory.toString());
-		} catch(SQLException e) {
-			e.printStackTrace();
-		}
-		return inventory;
+		ChecklistSystem checkSys = new ChecklistSystem();
+		checkSys.setChecklistClothing(account.getUserID(), inventory);
+		checkSys.setChecklistFood(account.getUserID(), inventory);
+		checkSys.setChecklistItem(account.getUserID(), inventory);
+		controller.setMyInventory(inventory);
 	}
 	
 	public void createNewChecklistButtonOnAction(ActionEvent event) throws IOException {
@@ -122,7 +70,7 @@ public class ChecklistsController {
 		Parent root;
 		
 		stage = new Stage();
-		root = FXMLLoader.load(getClass().getResource("/views/checklistsCreate.fxml"));
+		root = FXMLLoader.load(getClass().getResource("/views/ChecklistsCreate.fxml"));
 		stage.setScene(new Scene(root));
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.initOwner(createNewChecklistButton.getScene().getWindow());
@@ -131,7 +79,11 @@ public class ChecklistsController {
 	
 	public void backButtonOnAction(ActionEvent event) {
 		UniversalMethods unimet = new UniversalMethods();
-		unimet.switchScene(event, "home.fxml");
+		//unimet.switchScene(event, "Home.fxml");
+		
+		HomeController controller = new HomeController();
+		controller.setCurrentAccount(account);
+		unimet.switcherooScene(backButton.getScene().getWindow(), "/views/Home.fxml", controller);
 	}
 	
 	public void setCurrentAccount(Account account) {

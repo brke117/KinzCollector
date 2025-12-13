@@ -22,36 +22,31 @@ public class HomeController {
 	private Account account;
 	
 	public void checklistsMenuButtonOnAction(ActionEvent event) {
-		//UniversalMethods unimet = new UniversalMethods();
-		//unimet.switchScene(event, "checklists.fxml");
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/checklists.fxml"));
-			Parent root = loader.load();
-			
-			ChecklistsController controller = loader.getController();
-			controller.setCurrentAccount(account);
-			
-			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		    stage.setScene(new Scene(root));
-		    stage.show();
-		} catch(IOException e) {
-			e.printStackTrace();
-		}
+		UniversalMethods unimet = new UniversalMethods();
+		ChecklistsController controller = new ChecklistsController();
+
+		controller.setCurrentAccount(account);
+		unimet.switcherooScene(checklistsMenuButton.getScene().getWindow(), "/views/Checklists.fxml", controller);
 	}
 	
 	public void viewItemMenuButtonOnAction(ActionEvent event) {
 		UniversalMethods unimet = new UniversalMethods();
-		unimet.switchScene(event, "viewItem.fxml");
+		unimet.switchScene(event, "ViewItem.fxml");
 	}
 	
 	public void settingsMenuButtonOnAction(ActionEvent event) {
 		UniversalMethods unimet = new UniversalMethods();
-		unimet.switchScene(event, "settings.fxml");
+		unimet.switchScene(event, "Settings.fxml");
 	}
 	
 	public void calculationsMenuButtonOnAction(ActionEvent event) {
 		UniversalMethods unimet = new UniversalMethods();
-		unimet.switchScene(event, "calculations.fxml");
+		//unimet.switchScene(event, "Calculations.fxml");
+		
+		CalculationsController controller = new CalculationsController();
+		controller.setCurrentAccount(account);
+		unimet.switcherooScene(calculationsMenuButton.getScene().getWindow(), "/views/Calculations.fxml", controller);
+		
 	}
 	
 	public void setCurrentAccount(Account account) {

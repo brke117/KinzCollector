@@ -29,7 +29,7 @@ public class RegisterController {
 	
 	public void cancelButtonOnAction(ActionEvent e) throws IOException {
 		Stage stage = (Stage) cancelButton.getScene().getWindow();
-		Parent root = FXMLLoader.load(getClass().getResource("/views/main.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("/views/Main.fxml"));
 		
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
@@ -76,7 +76,7 @@ public class RegisterController {
 		try {
 			Stage stage;
 			stage = (Stage) window.getScene().getWindow();
-			Parent root = FXMLLoader.load(getClass().getResource("/views/login.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/views/Login.fxml"));
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();

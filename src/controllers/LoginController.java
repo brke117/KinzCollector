@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import application.UniversalMethods;
 import database.DatabaseConnection;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,7 +34,7 @@ public class LoginController {
 	
 	public void cancelButtonOnAction(ActionEvent event) throws IOException {
 		Stage stage = (Stage) cancelButton.getScene().getWindow();
-		Parent root = FXMLLoader.load(getClass().getResource("/views/main.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("/views/Main.fxml"));
 		
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
@@ -66,7 +67,12 @@ public class LoginController {
 					}
 					//System.out.println("ACCOUNT USERNAME/ID: " + account.getUsername() + " " + account.getUserID());
 					loginMessageLabel.setText("Welcome!");
-					homeMenu(loginMessageLabel.getScene().getWindow());
+					
+					UniversalMethods unimet = new UniversalMethods();
+					HomeController controller = new HomeController();
+					controller.setCurrentAccount(account);
+					unimet.switcherooScene(loginMessageLabel.getScene().getWindow(), "/views/Home.fxml", controller);
+					//homeMenu(loginMessageLabel.getScene().getWindow());
 				} else {
 					loginMessageLabel.setText("Incorrect username/password. Please try again.");
 				}
@@ -78,11 +84,16 @@ public class LoginController {
 	
 	public void homeMenu(Window window) {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/home.fxml"));
-			Parent root = loader.load();
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Home.fxml"));
 			
-			HomeController controller = loader.getController();
+			//HomeController controller = loader.getController();
+			HomeController controller = new HomeController();
+			
 			controller.setCurrentAccount(account);
+			loader.setController(controller);
+			
+			
+			Parent root = loader.load();
 			
 			Stage stage = (Stage) window.getScene().getWindow();
 		    stage.setScene(new Scene(root));
@@ -91,5 +102,9 @@ public class LoginController {
 			e.printStackTrace();
 			e.getCause();
 		}
+	}
+	
+	public void setCurrentAccount(Account account) {
+		this.account = account;
 	}
 }

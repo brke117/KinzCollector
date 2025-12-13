@@ -20,7 +20,7 @@ public class MainController {
 		Parent root;
 		
 		stage = (Stage) signInButton.getScene().getWindow();
-		root = FXMLLoader.load(getClass().getResource("/views/login.fxml"));
+		root = FXMLLoader.load(getClass().getResource("/views/Login.fxml"));
 		
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
@@ -32,7 +32,7 @@ public class MainController {
 		Parent root;
 		
 		stage = (Stage) signUpButton.getScene().getWindow();
-		root = FXMLLoader.load(getClass().getResource("/views/register.fxml"));
+		root = FXMLLoader.load(getClass().getResource("/views/Register.fxml"));
 		
 		Scene scene = new Scene(root);
 		stage.setScene(scene);

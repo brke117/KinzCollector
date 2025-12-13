@@ -1,6 +1,12 @@
 package controllers;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import application.UniversalMethods;
+import database.DatabaseConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -31,10 +37,6 @@ public class ViewSingleChecklistController {
 	}
 	//FROM SINGLE CHECKLIST ADD CODE... IGNORE FOR NOW!!!
 	
-	
-	
-
-	
 	public void setMyInventory(Inventory inventory) {
 	    this.inventory = inventory;
 	    showItems();
@@ -45,12 +47,6 @@ public class ViewSingleChecklistController {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
 	//ALL GOOD HERE... DONT TOUCH
 	public void setCurrentAccount(Account account) {
 		this.account = account;
@@ -58,6 +54,11 @@ public class ViewSingleChecklistController {
 	
 	public void backButtonOnAction(ActionEvent event) {
 		UniversalMethods unimet = new UniversalMethods();
-		unimet.switchScene(event, "checklists.fxml");
+		//unimet.switchScene(event, "Checklists.fxml");
+		
+		ChecklistsController controller = new ChecklistsController();
+
+		controller.setCurrentAccount(account);
+		unimet.switcherooScene(backButton.getScene().getWindow(), "/views/Checklists.fxml", controller);
 	}
 }

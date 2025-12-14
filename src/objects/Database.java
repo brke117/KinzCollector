@@ -188,4 +188,67 @@ public class Database {
 			e.printStackTrace();
 		}
 	}
+	
+	public void updateClothingOwned(int id, String name) {
+		ResultSet resultOwned = null;
+		boolean owned = false;
+		
+		try {
+			Statement statement = connectDB.createStatement();
+			resultOwned = statement.executeQuery("SELECT owned FROM clothing WHERE name = '" + name + "'");
+			while(resultOwned.next()) {
+				owned = resultOwned.getBoolean(1);
+			}
+			
+			if(owned == false) {
+				statement.execute("UPDATE clothing SET owned = '1' WHERE name = '" + name + "'");
+			} else if(owned == true) {
+				statement.execute("UPDATE clothing SET owned = '0' WHERE name = '" + name + "'");
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateFoodOwned(int id, String name) {
+		ResultSet resultOwned = null;
+		boolean owned = false;
+		
+		try {
+			Statement statement = connectDB.createStatement();
+			resultOwned = statement.executeQuery("SELECT owned FROM food WHERE name = '" + name + "'");
+			while(resultOwned.next()) {
+				owned = resultOwned.getBoolean(1);
+			}
+			
+			if(owned == false) {
+				statement.execute("UPDATE food SET owned = '1' WHERE name = '" + name + "'");
+			} else if(owned == true) {
+				statement.execute("UPDATE food SET owned = '0' WHERE name = '" + name + "'");
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateItemOwned(int id, String name) {
+		ResultSet resultOwned = null;
+		boolean owned = false;
+		
+		try {
+			Statement statement = connectDB.createStatement();
+			resultOwned = statement.executeQuery("SELECT owned FROM item WHERE name = '" + name + "'");
+			while(resultOwned.next()) {
+				owned = resultOwned.getBoolean(1);
+			}
+			
+			if(owned == false) {
+				statement.execute("UPDATE item SET owned = '1' WHERE name = '" + name + "'");
+			} else if(owned == true) {
+				statement.execute("UPDATE item SET owned = '0' WHERE name = '" + name + "'");
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

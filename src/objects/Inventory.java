@@ -87,6 +87,35 @@ public class Inventory {
 		}
 	}
 	
+	public boolean getOwned(String name) {
+		int category = db.determineCategory(name);
+		System.out.println(category);
+		
+		if(category == 1) { //1 = clothing
+			for(int i=0; i<clothing.size(); i++) {
+				if(clothing.get(i).getName() == name) {
+					System.out.println("CLOTHING: " + name);
+					return clothing.get(i).getOwned();
+				}
+			}
+		} else if(category == 2) {
+			for(int i=0; i<food.size(); i++) {
+				if(food.get(i).getName() == name) {
+					System.out.println("FOOD: " + name);
+					return food.get(i).getOwned();
+				}
+			}
+		} else {
+			for(int i=0; i<item.size(); i++) {
+				if(item.get(i).getName() == name) {
+					System.out.println("ITEM: " + name);
+					return item.get(i).getOwned();
+				}
+			}
+		}
+		return false;
+	}//END METHOD
+	
 	public ObservableList<String> sendToList() {
 		ObservableList<String> list = FXCollections.observableArrayList();
 		for(int i=0; i<clothing.size(); i++) {

@@ -63,6 +63,7 @@ public class ChecklistsController {
 		checkSys.setChecklistFood(account.getUserID(), inventory);
 		checkSys.setChecklistItem(account.getUserID(), inventory);
 		controller.setMyInventory(inventory);
+		controller.loadGridPane();
 	}
 	
 	public void createNewChecklistButtonOnAction(ActionEvent event) throws IOException {

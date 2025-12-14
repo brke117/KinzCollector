@@ -78,14 +78,15 @@ public class ChecklistSystem {
 			}
 			
 			for(int i=0; i<itemID.size(); i++) {
-				inventory.getFoodByFoodID(itemID.get(i));
+				inventory.getItemByItemID(itemID.get(i));
 			}
 			//System.out.println(itemID.toString());
-			System.out.println(inventory.toString());
+			//System.out.println(inventory.toString());
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
 		return inventory;
 	}
+	
 	
 }

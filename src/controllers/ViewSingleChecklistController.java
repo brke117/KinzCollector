@@ -98,8 +98,10 @@ public class ViewSingleChecklistController {
 	
 	public void getOwnedStatus() {
 		for(int i=0; i<checkBoxes.size(); i++) {
-			boolean owned = inventory.getOwned(checkBoxes.get(i).getText());
-			System.out.println("IS CHECKBOX OWNED?: " + owned);
+			int category = db.determineCategory(checkBoxes.get(i).getText());
+			boolean owned = db.getOwned(account.getUserID(), category, inventory.getTypeID(checkBoxes.get(i).getText()));
+			
+			//System.out.println("IS CHECKBOX OWNED?: " + owned);
 			checkBoxes.get(i).setSelected(owned);
 		}
 	}
@@ -108,25 +110,12 @@ public class ViewSingleChecklistController {
 		int category = db.determineCategory(name);
 		
 		if(category == 1) {
-			System.out.println("DO CLOTHING");
-			db.updateClothingOwned(account.getUserID(), name);
+			db.updateClothingOwned(account.getUserID(), inventory.getTypeID(name));
 		} else if(category == 2) {
-			System.out.println("DO FOOD");
-			db.updateFoodOwned(account.getUserID(), name);
+			db.updateFoodOwned(account.getUserID(), inventory.getTypeID(name));
 		} else {
-			System.out.println("DO ITEM");
-			db.updateItemOwned(account.getUserID(), name);
+			db.updateItemOwned(account.getUserID(), inventory.getTypeID(name));
 		}
-		
-		/*
-		if(checkBox.isSelected()) {
-			System.out.println("Selected");
-			db.updateItemStatus(account.getUserID(), name);
-		} else {
-			System.out.println("Deselected");
-			db.updateItemStatus(account.getUserID(), name);
-		}
-		*/
 	}
 	
 	

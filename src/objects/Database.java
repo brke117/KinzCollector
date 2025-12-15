@@ -189,63 +189,82 @@ public class Database {
 		}
 	}
 	
-	public void updateClothingOwned(int id, String name) {
+	public boolean getOwned(int user_id, int category, int type_id) {
+		ResultSet resultOwned = null;
+		boolean owned = false;
+		
+		if(category == 1) {
+			try {
+				Statement statement = connectDB.createStatement();
+				resultOwned = statement.executeQuery("SELECT clothing_owned FROM account_has_clothing WHERE account_user_id = " + user_id + " AND clothing_clothing_id = " + type_id);
+				while(resultOwned.next()) {
+					owned = resultOwned.getBoolean(1);
+				}
+				return owned;
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
+	
+	public void updateClothingOwned(int user_id, int clothing_id) {
 		ResultSet resultOwned = null;
 		boolean owned = false;
 		
 		try {
 			Statement statement = connectDB.createStatement();
-			resultOwned = statement.executeQuery("SELECT owned FROM clothing WHERE name = '" + name + "'");
+			resultOwned = statement.executeQuery("SELECT clothing_owned FROM account_has_clothing WHERE account_user_id = " + user_id + " AND clothing_clothing_id = " + clothing_id);
 			while(resultOwned.next()) {
 				owned = resultOwned.getBoolean(1);
 			}
 			
 			if(owned == false) {
-				statement.execute("UPDATE clothing SET owned = '1' WHERE name = '" + name + "'");
+				statement.execute("UPDATE account_has_clothing SET clothing_owned = '1' WHERE account_user_id = " + user_id + " AND clothing_clothing_id = " + clothing_id);
 			} else if(owned == true) {
-				statement.execute("UPDATE clothing SET owned = '0' WHERE name = '" + name + "'");
+				statement.execute("UPDATE account_has_clothing SET clothing_owned = '0' WHERE account_user_id = " + user_id + " AND clothing_clothing_id = " + clothing_id);
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public void updateFoodOwned(int id, String name) {
+	public void updateFoodOwned(int user_id, int food_id) {
 		ResultSet resultOwned = null;
 		boolean owned = false;
 		
 		try {
 			Statement statement = connectDB.createStatement();
-			resultOwned = statement.executeQuery("SELECT owned FROM food WHERE name = '" + name + "'");
+			resultOwned = statement.executeQuery("SELECT food_owned FROM account_has_food WHERE account_user_id = " + user_id + " AND food_food_id = " + food_id);
 			while(resultOwned.next()) {
 				owned = resultOwned.getBoolean(1);
 			}
 			
 			if(owned == false) {
-				statement.execute("UPDATE food SET owned = '1' WHERE name = '" + name + "'");
+				statement.execute("UPDATE account_has_food SET food_owned = '1' WHERE account_user_id = " + user_id + " AND food_food_id = " + food_id);
 			} else if(owned == true) {
-				statement.execute("UPDATE food SET owned = '0' WHERE name = '" + name + "'");
+				statement.execute("UPDATE account_has_food SET food_owned = '0' WHERE account_user_id = " + user_id + " AND food_food_id = " + food_id);
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public void updateItemOwned(int id, String name) {
+	public void updateItemOwned(int user_id, int item_id) {
 		ResultSet resultOwned = null;
 		boolean owned = false;
 		
 		try {
 			Statement statement = connectDB.createStatement();
-			resultOwned = statement.executeQuery("SELECT owned FROM item WHERE name = '" + name + "'");
+			resultOwned = statement.executeQuery("SELECT item_owned FROM account_has_item WHERE account_user_id = " + user_id + " AND item_item_id = " + item_id);
 			while(resultOwned.next()) {
 				owned = resultOwned.getBoolean(1);
 			}
 			
 			if(owned == false) {
-				statement.execute("UPDATE item SET owned = '1' WHERE name = '" + name + "'");
+				statement.execute("UPDATE account_has_item SET item_owned = '1' WHERE account_user_id = " + user_id + " AND item_item_id = " + item_id);
 			} else if(owned == true) {
-				statement.execute("UPDATE item SET owned = '0' WHERE name = '" + name + "'");
+				statement.execute("UPDATE account_has_item SET item_owned = '0' WHERE account_user_id = " + user_id + " AND item_item_id = " + item_id);
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();

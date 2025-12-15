@@ -88,33 +88,33 @@ public class Inventory {
 	}
 	
 	public boolean getOwned(String name) {
+		return false;
+	}
+	
+	public int getTypeID(String name) {
 		int category = db.determineCategory(name);
-		System.out.println(category);
 		
-		if(category == 1) { //1 = clothing
+		if(category == 1) {
 			for(int i=0; i<clothing.size(); i++) {
 				if(clothing.get(i).getName() == name) {
-					System.out.println("CLOTHING: " + name);
-					return clothing.get(i).getOwned();
+					return clothing.get(i).getClothingID();
 				}
 			}
 		} else if(category == 2) {
 			for(int i=0; i<food.size(); i++) {
 				if(food.get(i).getName() == name) {
-					System.out.println("FOOD: " + name);
-					return food.get(i).getOwned();
+					return food.get(i).getFoodID();
 				}
 			}
-		} else {
+		} else if(category == 3) {
 			for(int i=0; i<item.size(); i++) {
 				if(item.get(i).getName() == name) {
-					System.out.println("ITEM: " + name);
-					return item.get(i).getOwned();
+					return item.get(i).getItemID();
 				}
 			}
 		}
-		return false;
-	}//END METHOD
+		return -1;
+	}
 	
 	public ObservableList<String> sendToList() {
 		ObservableList<String> list = FXCollections.observableArrayList();

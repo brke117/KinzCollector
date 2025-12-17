@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -20,8 +19,7 @@
                </font>
             </Label>
             <Button fx:id="backButton" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" onAction="#backButtonOnAction" prefHeight="25.0" prefWidth="59.0" text="BACK" />
-            <ListView fx:id="checklistListView" layoutX="15.0" layoutY="90.0" prefHeight="286.0" prefWidth="149.0" />
-            <GridPane fx:id="clGridPane" alignment="CENTER" gridLinesVisible="true" layoutX="180.0" layoutY="90.0" prefHeight="289.0" prefWidth="405.0">
+            <GridPane fx:id="clGridPane" alignment="CENTER" layoutX="16.0" layoutY="83.0" prefHeight="296.0" prefWidth="569.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

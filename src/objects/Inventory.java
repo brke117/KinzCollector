@@ -116,6 +116,31 @@ public class Inventory {
 		return -1;
 	}
 	
+	public int getTypeAssetID(String name) {
+		int category = db.determineCategory(name);
+		
+		if(category == 1) {
+			for(int i=0; i<clothing.size(); i++) {
+				if(clothing.get(i).getName() == name) {
+					return clothing.get(i).getAssetID();
+				}
+			}
+		} else if(category == 2) {
+			for(int i=0; i<food.size(); i++) {
+				if(food.get(i).getName() == name) {
+					return food.get(i).getAssetID();
+				}
+			}
+		} else if(category == 3) {
+			for(int i=0; i<item.size(); i++) {
+				if(item.get(i).getName() == name) {
+					return item.get(i).getAssetID();
+				}
+			}
+		}
+		return -1;
+	}
+	
 	public ObservableList<String> sendToList() {
 		ObservableList<String> list = FXCollections.observableArrayList();
 		for(int i=0; i<clothing.size(); i++) {

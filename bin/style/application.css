@@ -1,1 +1,26 @@
-/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+ .root{
+    -fx-font-family: "Webkinz Book Cyrillic";
+    -fx-base: #330099;
+    -fx-background-color: #0066CC;
+}
+
+ 
+.button{
+	-fx-font-size: 14;
+    -fx-text-fill: #CBCBCB;
+    -fx-border-color: "black";
+    -fx-border-radius: 5;
+    -fx-padding: 3 6 6 6;
+}
+ 
+.borders{
+    -fx-border-color: rgb(103, 100, 78);
+    -fx-border-style: dotted;
+    -fx-border-width: 1.5;
+    -fx-border-insets: -5;
+}
+
+.label{
+	-fx-font-family: "Webkinz Book Cyrillic";
+}

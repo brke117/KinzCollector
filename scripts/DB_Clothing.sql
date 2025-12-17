@@ -1,0 +1,15 @@
+INSERT INTO clothing VALUES
+(DEFAULT, 41049, "Autumn Striped Sweater", 487, "Clothing", "Fall 2024", "KinzStyle Outlet", DEFAULT, DEFAULT),
+(DEFAULT, 41058, "Autumn Windbreaker", 	   386, "Clothing", "Fall 2024", "KinzStyle Outlet", DEFAULT, DEFAULT),
+(DEFAULT, 41070, "Cool Chelsea Boots", 	   326, "Clothing", "Fall 2024", "KinzStyle Outlet", DEFAULT, DEFAULT),
+(DEFAULT, 41050, "Fuzzy Cropped Sweater",  412, "Clothing", "Fall 2024", "KinzStyle Outlet", TRUE, 	  DEFAULT),
+(DEFAULT, 41068, "Golden Flats", 		   266, "Clothing", "Fall 2024", "KinzStyle Outlet", TRUE, 	  DEFAULT),
+(DEFAULT, 41052, "Knit Chicken Hat", 	   214, "Clothing", "Fall 2024", "KinzStyle Outlet", TRUE, 	  DEFAULT),
+(DEFAULT, 41054, "Knit Dragon Hat", 	   232, "Clothing", "Fall 2024", "KinzStyle Outlet", DEFAULT, DEFAULT),
+(DEFAULT, 41062, "Leafy Sunglasses", 	   232, "Clothing", "Fall 2024", "KinzStyle Outlet", DEFAULT, DEFAULT),
+(DEFAULT, 41066, "Ruffled Golden Skirt",   391, "Clothing", "Fall 2024", "KinzStyle Outlet", TRUE, 	  DEFAULT),
+(DEFAULT, 41060, "Warm Bubble Vest", 	   308, "Clothing", "Fall 2024", "KinzStyle Outlet", DEFAULT, DEFAULT),
+(DEFAULT, 41056, "Warm Sweater Vest", 	   433, "Clothing", "Fall 2024", "KinzStyle Outlet", DEFAULT, DEFAULT),
+(DEFAULT, 41064, "White Chinos", 		   492, "Clothing", "Fall 2024", "KinzStyle Outlet", DEFAULT, DEFAULT),
+(DEFAULT, 41074, "Autumn Apron Dress", 	   NULL, "Recipe Clothing", "Fall 2024", "KinzStyle Outlet", DEFAULT, DEFAULT),
+(DEFAULT, 41072, "Plum Suit", 			   NULL, "Recipe Clothing", "Fall 2024", "KinzStyle Outlet", DEFAULT, DEFAULT);

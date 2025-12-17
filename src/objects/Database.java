@@ -100,6 +100,54 @@ public class Database {
 		return resultItem;
 	}
 	
+	//WORK IN PROGRESS... NOT IMPLEMENTED YET!!!
+	public int getAssetIDByName(String name) {
+		int category = determineCategory(name);
+		
+		if(category == 1) {
+			String getAssetIDByName = "SELECT asset_id FROM clothing WHERE name = '" + name + "'";
+			ResultSet resultItem = null;
+			try {
+				Statement statement = connectDB.createStatement();
+				resultItem = statement.executeQuery(getAssetIDByName);
+				
+				while(resultItem.next()) {
+					return resultItem.getInt(1);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		} else if(category == 2) {
+			String getAssetIDByName = "SELECT asset_id FROM food WHERE name = '" + name + "'";
+			ResultSet resultItem = null;
+			try {
+				Statement statement = connectDB.createStatement();
+				resultItem = statement.executeQuery(getAssetIDByName);
+				
+				while(resultItem.next()) {
+					return resultItem.getInt(1);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} else if(category == 3) {
+			String getAssetIDByName = "SELECT asset_id FROM item WHERE name = '" + name + "'";
+			ResultSet resultItem = null;
+			try {
+				Statement statement = connectDB.createStatement();
+				resultItem = statement.executeQuery(getAssetIDByName);
+				
+				while(resultItem.next()) {
+					return resultItem.getInt(1);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return -1;
+	}
+	
 	public int determineCategory(String name) {
 		int category = 0;
 		ResultSet resultCategory = null;
@@ -111,7 +159,7 @@ public class Database {
 			while(resultCategory.next()) {
 				if(resultCategory.getString(1).equals("Clothing")) {
 					category = 1;
-				} else if(resultCategory.getString(1).equals("Ingredient") || resultCategory.getString(1).equals("Recipe Food")) {
+				} else if(resultCategory.getString(1).equals("Ingredient") || resultCategory.getString(1).equals("Recipe Food") || resultCategory.getString(1).equals("Pet-Specific Food")) {
 					category = 2;
 				} else if(resultCategory.getString(1).equals("TYPE")) {
 					category = 3;

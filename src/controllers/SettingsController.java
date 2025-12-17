@@ -11,14 +11,21 @@ public class SettingsController {
 	@FXML Button accountSettingsButton;
 	@FXML Button myPageButton;
 	@FXML Button backButton;
+	@FXML Button logOutButton;
 	private Account account;
 	
 	public void accountSettingsButtonOnAction(ActionEvent event) {
-		
+		UniversalMethods unimet = new UniversalMethods();
+		AccountSettingsController controller = new AccountSettingsController();
+		controller.setCurrentAccount(account);
+		unimet.switcherooScene(backButton.getScene().getWindow(), "/views/ComingSoon.fxml", controller);
 	}
 	
 	public void myPageButtonOnAction(ActionEvent event) {
-		
+		UniversalMethods unimet = new UniversalMethods();
+		MyPageController controller = new MyPageController();
+		controller.setCurrentAccount(account);
+		unimet.switcherooScene(backButton.getScene().getWindow(), "/views/ComingSoon.fxml", controller);
 	}
 	
 	public void backButtonOnAction(ActionEvent event) {
@@ -28,6 +35,11 @@ public class SettingsController {
 		HomeController controller = new HomeController();
 		controller.setCurrentAccount(account);
 		unimet.switcherooScene(backButton.getScene().getWindow(), "/views/Home.fxml", controller);
+	}
+	
+	public void logOutButtonOnAction(ActionEvent event) {
+		UniversalMethods unimet = new UniversalMethods();
+		unimet.switcherooScene(backButton.getScene().getWindow(), "/views/Main.fxml", null);
 	}
 	
 	public void setCurrentAccount(Account account) {

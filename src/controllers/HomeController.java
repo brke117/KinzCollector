@@ -36,17 +36,18 @@ public class HomeController {
 	
 	public void settingsMenuButtonOnAction(ActionEvent event) {
 		UniversalMethods unimet = new UniversalMethods();
+		SettingsController controller = new SettingsController();
+		
+		controller.setCurrentAccount(account);
 		unimet.switchScene(event, "Settings.fxml");
 	}
 	
 	public void calculationsMenuButtonOnAction(ActionEvent event) {
 		UniversalMethods unimet = new UniversalMethods();
-		//unimet.switchScene(event, "Calculations.fxml");
-		
 		CalculationsController controller = new CalculationsController();
-		controller.setCurrentAccount(account);
-		unimet.switcherooScene(calculationsMenuButton.getScene().getWindow(), "/views/Calculations.fxml", controller);
 		
+		controller.setCurrentAccount(account);
+		unimet.switcherooScene(calculationsMenuButton.getScene().getWindow(), "/views/ComingSoon.fxml", controller);
 	}
 	
 	public void setCurrentAccount(Account account) {

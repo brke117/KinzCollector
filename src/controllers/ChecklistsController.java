@@ -43,8 +43,11 @@ public class ChecklistsController {
 			Parent root = loader.load();
 			
 			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		    stage.setScene(new Scene(root));
+			Scene scene = new Scene(root);
+		    stage.setScene(scene);
 		    stage.show();
+		    
+		    scene.getStylesheets().add(getClass().getResource("/style/application.css").toExternalForm());
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
@@ -63,10 +66,15 @@ public class ChecklistsController {
 		checkSys.setChecklistFood(account.getUserID(), inventory);
 		checkSys.setChecklistItem(account.getUserID(), inventory);
 		controller.setMyInventory(inventory);
-		controller.loadGridPane();
+		//controller.loadGridPane();
+		System.out.println(account.getUserID());
 	}
 	
 	public void createNewChecklistButtonOnAction(ActionEvent event) throws IOException {
+		UniversalMethods unimet = new UniversalMethods();
+		ComingSoonController controller = new ComingSoonController();
+		unimet.switcherooScene(backButton.getScene().getWindow(), "/views/ComingSoon.fxml", controller);
+		/* multichecklist system... IN THE FUTURE!
 		Stage stage;
 		Parent root;
 		
@@ -76,6 +84,7 @@ public class ChecklistsController {
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.initOwner(createNewChecklistButton.getScene().getWindow());
 		stage.showAndWait();
+		*/
 	}
 	
 	public void backButtonOnAction(ActionEvent event) {

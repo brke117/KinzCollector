@@ -34,6 +34,8 @@ public class RegisterController {
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
+		
+		scene.getStylesheets().add(getClass().getResource("/style/application.css").toExternalForm());
 	}
 	
 	public void registerButtonOnAction(ActionEvent e) {
@@ -80,6 +82,8 @@ public class RegisterController {
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
+			
+			scene.getStylesheets().add(getClass().getResource("/style/application.css").toExternalForm());
 		} catch(Exception e) {
 			e.printStackTrace();
 			e.getCause();

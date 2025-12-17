@@ -25,6 +25,8 @@ public class MainController {
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
+		
+		scene.getStylesheets().add(getClass().getResource("/style/application.css").toExternalForm());
 	}
 	
 	public void signUpButtonOnAction(ActionEvent e) throws IOException {
@@ -37,5 +39,7 @@ public class MainController {
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
+		
+		scene.getStylesheets().add(getClass().getResource("/style/application.css").toExternalForm());
 	}
 }

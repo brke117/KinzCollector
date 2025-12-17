@@ -16,12 +16,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 import objects.Account;
 import objects.Database;
 import objects.Inventory;
@@ -29,7 +36,7 @@ import objects.Inventory;
 public class ViewSingleChecklistController {
 
 	@FXML private Button backButton;
-	@FXML private ListView<String> checklistListView;
+	//@FXML private ListView<String> checklistListView;
 	private Account account;
 	
 	@FXML private GridPane clGridPane;
@@ -54,7 +61,8 @@ public class ViewSingleChecklistController {
 	}
 	
 	private void showItems() {
-		checklistListView.setItems(inventory.sendToList());
+		//checklistListView.setItems(inventory.sendToList());
+		loadGridPane();
 	}
 	
 	
@@ -65,7 +73,7 @@ public class ViewSingleChecklistController {
 	public void loadGridPane() {
 		int c = 0;
 		int r = 0;
-		clGridPane.setPadding(new Insets(20));
+		clGridPane.setPadding(new Insets(10));
 		
 		inventoryItems = inventory.sendToList();
 		//System.out.println(inventoryItems.toString());
@@ -82,11 +90,32 @@ public class ViewSingleChecklistController {
 				r++;
 			}
 			//clGridPane.add(checkBox, c, r);
-			clGridPane.add(checkBoxes.get(i), c, r);
+			
+			ImageView testIV = new ImageView("https://assets.webkinz.com/swf/item/" + inventory.getTypeAssetID(checkBoxes.get(i).getText()) + "/icon.png");
+			testIV.setFitWidth(80);
+			testIV.setPreserveRatio(true);
+			
+			VBox cellItems = new VBox(-5);
+			cellItems.setAlignment(Pos.CENTER);
+			cellItems.getChildren().addAll(checkBoxes.get(i), testIV);
+			clGridPane.add(cellItems, c, r);
+			
+			cellItems.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+			clGridPane.setHgrow(cellItems, Priority.ALWAYS);
+			clGridPane.setVgrow(cellItems, Priority.ALWAYS);
+			
+			//clGridPane.add(checkBoxes.get(i), c, r);
+			//clGridPane.setHalignment(checkBoxes.get(i), HPos.CENTER);
+			//clGridPane.setValignment(checkBoxes.get(i), VPos.TOP);
 			c++;
 		}
 		getListeners();
 		getOwnedStatus();
+		
+		
+		//clGridPane.add(testIV, 2, 1);
+		//testIV.fitWidthProperty();
+		
 	}
 	
 	public void getListeners() {

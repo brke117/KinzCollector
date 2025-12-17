@@ -17,6 +17,8 @@ public class UniversalMethods {
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
+			
+			scene.getStylesheets().add(getClass().getResource("/style/application.css").toExternalForm());
 		} catch(Exception e) {
 			e.printStackTrace();
 			e.getCause();
@@ -31,8 +33,11 @@ public class UniversalMethods {
 			 Parent root = loader.load();
 			 
 			 Stage stage = (Stage) window.getScene().getWindow();
-			 stage.setScene(new Scene(root));
+			 Scene scene = new Scene(root);
+			 stage.setScene(scene);
 			 stage.show();
+			 
+			 scene.getStylesheets().add(getClass().getResource("/style/application.css").toExternalForm());
 			 
 			 return controller;
 		 } catch(Exception e) {

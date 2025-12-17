@@ -12,10 +12,11 @@ public class KinzCollector extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("/views/Main.fxml"));
 		primaryStage.setTitle("KinzCollector");
-		Scene main = new Scene(root,520,400);
-		primaryStage.setScene(main);
+		Scene scene = new Scene(root,520,400);
+		primaryStage.setScene(scene);
 		primaryStage.show();
-		//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		
+		scene.getStylesheets().add(getClass().getResource("/style/application.css").toExternalForm());
 	}
 	
 	public static void main(String[] args) {

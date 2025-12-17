@@ -21,7 +21,7 @@
       </AnchorPane>
    </top>
    <bottom>
-      <AnchorPane prefHeight="332.0" prefWidth="520.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="218.0" prefWidth="520.0" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="137.0" layoutY="39.0" text="Username">
                <font>
@@ -37,7 +37,7 @@
             <PasswordField fx:id="passwordPasswordField" layoutX="235.0" layoutY="88.0" promptText="Password" />
             <Button fx:id="loginButton" layoutX="171.0" layoutY="140.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="25.0" prefWidth="76.0" text="Log In" />
             <Button fx:id="cancelButton" layoutX="284.0" layoutY="140.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="25.0" prefWidth="79.0" text="Cancel" />
-            <Label fx:id="loginMessageLabel" alignment="CENTER" layoutX="115.0" layoutY="14.0" prefHeight="17.0" prefWidth="290.0" text=" " textFill="WHITE" />
+            <Label fx:id="loginMessageLabel" alignment="CENTER" layoutX="115.0" layoutY="14.0" prefHeight="17.0" prefWidth="290.0" text=" " textFill="#82ffc5" />
          </children>
       </AnchorPane>
    </bottom>

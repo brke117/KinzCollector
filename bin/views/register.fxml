@@ -37,7 +37,7 @@
             <PasswordField fx:id="passwordPasswordField" layoutX="235.0" layoutY="88.0" promptText="Password" />
             <Button fx:id="registerButton" layoutX="171.0" layoutY="140.0" mnemonicParsing="false" onAction="#registerButtonOnAction" text="Create Account" />
             <Button fx:id="cancelButton" layoutX="284.0" layoutY="140.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="25.0" prefWidth="89.0" text="Cancel" />
-            <Label fx:id="registrationMessageLabel" alignment="CENTER" layoutX="115.0" layoutY="14.0" prefHeight="17.0" prefWidth="322.0" text=" " textFill="WHITE" />
+            <Label fx:id="registrationMessageLabel" alignment="CENTER" layoutX="115.0" layoutY="14.0" prefHeight="17.0" prefWidth="322.0" text=" " textFill="#82ffc5" />
          </children>
       </AnchorPane>
    </bottom>
